@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pepper.mappers.member">
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.pepper.domain.MemberVO">
+		SELECT userID, userPW, userName, userEmail, userNumber
+		FROM member
+		WHERE userID = #{userID} AND userPW = #{userPW}
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.pepper.domain.MemberVO">
+		INSERT INTO member(userID, userPW, userName, userEmail, userNumber)
+		VALUES (#{userID}, #{userPW}, #{userName}, #{userEmail}, #{userNumber})
+	</insert>
+		
+	<!-- 회원가입 시 아이디 중복확인 -->
+	<select id="idCheck" parameterType="String" resultType="String">
+		SELECT userID
+		FROM member
+		WHERE userID=#{userID};
+	</select>
+	
+	<!-- 회원가입 시 닉네임 중복확인 -->
+	<select id="nameCheck" parameterType="String" resultType="String">
+		SELECT userName
+		FROM member
+		WHERE userName=#{userName};
+	</select>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="modifyPW">
+		UPDATE member
+		SET userPW=#{userPW}
+		WHERE userID=#{userID};
+	</update>
+	
+	<!-- 정보 수정 -->
+	<update id="modifyInfo">
+		UPDATE member
+		SET userName=#{userName}, userEmail=#{userEmail}, userNumber=#{userNumber}
+		WHERE userID=#{userID};
+	</update>
+	
+	<!-- 정보수정 시 비밀번호 일치 확인 -->
+	<select id="pwCheck" parameterType="String" resultType="String">
+		SELECT userPW
+		FROM member
+		WHERE userID=#{userID};
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="delete">
+		DELETE from member
+		WHERE userID=#{userID} AND userPW=#{userPW}
+	</delete>
+</mapper>

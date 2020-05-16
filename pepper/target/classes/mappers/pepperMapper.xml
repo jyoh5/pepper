@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pepper.mappers.pepper">
+
+	<!-- 오늘 수확량 -->
+	<select id="today" parameterType="com.pepper.domain.PepperVO" resultType="com.pepper.domain.PepperCntVO">
+		SELECT analDate AS 'date', grade AS 'grade', COUNT(userID) AS 'cnt'
+		FROM pepper 
+		WHERE analDate = #{analDate} AND userID = #{userID}
+		GROUP BY grade;
+	</select>
+
+	<!-- 누적 수확량 -->
+	<select id="total" parameterType="com.pepper.domain.PepperVO" resultType="com.pepper.domain.PepperCntVO">
+		SELECT analDate AS 'date', grade AS 'grade', COUNT(userID) AS 'cnt'
+		FROM pepper 
+		WHERE analDate >= #{analDate} AND userID = #{userID}
+		GROUP BY grade;
+	</select>
+
+	<!-- 연간 수확량 -->
+	<select id="year" parameterType="hashMap" resultType="com.pepper.domain.PepperCntVO">
+		SELECT analDate AS 'date', grade AS 'grade', COUNT(userID) AS 'cnt'
+		FROM pepper 
+		WHERE analDate >= #{startYear} AND analDate <![CDATA[ <= ]]> #{endYear} AND userID = #{userID}
+		GROUP BY analDate;
+	</select>
+	
+	<!-- 주간 수확량 -->
+	<select id="week" parameterType="hashMap" resultType="com.pepper.domain.PepperCntVO">
+		SELECT analDate AS 'date', grade AS 'grade', COUNT(userID) AS 'cnt'
+		FROM pepper
+		WHERE analDate >= #{startDate} AND analDate <![CDATA[ <= ]]> #{endDate} AND userID = #{userID}
+		GROUP BY analDate, grade;
+	</select>
+</mapper>
