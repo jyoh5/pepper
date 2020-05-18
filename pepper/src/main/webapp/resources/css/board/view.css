@@ -5,7 +5,7 @@ body {
     min-width: 1500px;
 }
 #wrap {
-	margin: 300px auto 0px;
+	margin: 230px auto 0px;
     width: 900px;
     height: 500px;
 }
@@ -38,7 +38,13 @@ body {
 	  opacity: 1;
 	}
   }
-  
+
+#pageTitle {
+	font-size: 3rem;
+	margin: 0 0 20px 0;
+}
+
+
 table {
 	width: 100%;
 	border-top: 2px solid #BFBFBF;

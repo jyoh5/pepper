@@ -13,7 +13,7 @@
 		var searchType = "${searchType}";
 		var keyword = "${keyword}";
 	</script>
-	<script src="<c:url value="/resources/js/board/view.js" />"></script>
+	<script src="<c:url value="/resources/js/board/view.js?ver=1" />"></script>
 </head>
 <body>
 	<div id="bgImg"></div>
@@ -24,6 +24,8 @@
 
     <div id="wrap">
 
+		<p id="pageTitle">${view.bno}번 글</p>
+		
         <table>
         	<colgroup>
         		<col width="*%">
@@ -61,7 +63,7 @@
         	<input type="password" name="userPW" id="userPW" placeholder="비밀번호 입력">
         	<p class="alertText"></p>
         	<div id="btnArea">
-	        	<button type="button" class="btn delete" id="btnDeleteOK">OK</button>
+	        	<button type="submit" class="btn delete" id="btnDeleteOK">OK</button>
 	        	<button type="button" class="btn delete" id="btnDeleteCancel">취소</button>
         	</div>
         </div>

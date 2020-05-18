@@ -21,8 +21,7 @@ $(function(){
 		if(inputPW != "") {
 					
 			var inputData = {userPW : inputPW};
-			console.log("ajax 이전");
-			console.log(inputData);
+
 			$.ajax({
 				url : "/member/pwCheck",
 				type : "post",
@@ -38,6 +37,14 @@ $(function(){
 			});
 		}	
 	});
+	
+	$("#userPW").keypress(function(event){
+		if(event.which===13){
+			$("#btnDeleteOK").click();
+			return false;
+		}
+	});
+	
 	
 	$("#btnDeleteCancel").click(function(){
 		$("#userPW").val("");

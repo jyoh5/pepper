@@ -23,6 +23,9 @@
 	</div>
     
     <div id="wrap">
+    
+    	<p id="pageTitle">글쓰기</p>
+    
         <form method="post" action="/board/write">
         	
         	<div style="display:none;">

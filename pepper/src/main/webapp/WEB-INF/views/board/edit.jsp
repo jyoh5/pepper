@@ -23,6 +23,9 @@
 	</div>
     
     <div id="wrap">
+    
+    	<p id="pageTitle">${view.bno}번 글 수정</p>
+    	
         <form method="post" action="/board/edit">
         
         	<div style="display:none;">
